@@ -21,7 +21,7 @@ body {
 #game-container {
   position: relative;
   width: 100%;
-  max-width: 400px;
+  max-width: 600px; /* yahan max-width ko 600px kiya gaya */
   margin: auto;
   box-shadow: 0 10px 30px rgba(0,0,0,0.3);
   border-radius: 12px;
@@ -75,32 +75,4 @@ button {
 
 button:hover {
   background-color: #8aacff;
-  transform: translateY(-2px);
-}
-
-button:active {
-  transform: translateY(0);
-}
-
-#theme-info {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-  color: white;
-  background: rgba(0,0,0,0.5);
-  padding: 20px;
-  border-radius: 12px;
-  width: 80%;
-  display: none; /* Hidden by default */
-}
-
-#theme-title {
-  margin: 0;
-  font-size: 2em;
-}
-
-#theme-backstory {
-  font-size: 1.1em;
-}
+  transform
