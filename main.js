@@ -31,7 +31,7 @@ function init() {
   high = localStorage.getItem('dodge_high') || 0;
   player = {
     x: W / 2 - 35,
-    y: H - 120,
+    y: H - 70 - 20,  // player ki y position neeche se thoda margin ke saath
     w: 70,
     h: 70,
     speed: 5
@@ -50,7 +50,7 @@ async function fetchTheme() {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         contents: [{
-          parts: [{ text: "Generate a creative theme for a simple obstacle-dodging game. Provide a short, exciting title and a one-sentence backstory. Format it as Title: [Title]\\nBackstory: [Backstory]" }]
+          parts: [{ text: "Generate a creative theme for a simple obstacle-dodging game. Provide a short, exciting title and a one-sentence backstory. Format it as Title: [Title]\nBackstory: [Backstory]" }]
         }]
       })
     });
@@ -85,6 +85,9 @@ function resize() {
   W = canvas.clientWidth;
   H = W * 1.6; // Maintain aspect ratio
   fixPixelRatio();
+  if (player) {
+    player.y = H - player.h - 20; // Player ki y position update karna resize ke samay
+  }
 }
 
 // Keyboard events
@@ -110,7 +113,7 @@ canvas.addEventListener('touchend', () => {
 
 // Spawn obstacles
 function spawn() {
-  const size = Math.random() * 20 + 40; // random size between 40 and 60
+  const size = Math.random() * 20 + 40;
   obstacles.push({
     x: Math.random() * (W - size),
     y: -size,
@@ -160,10 +163,8 @@ function draw() {
     ctx.fillRect((sx + (score % 100)) / 1.1 % W, sy, 1, 1);
   }
 
-  // Draw player
   ctx.drawImage(playerImg, player.x, player.y, player.w, player.h);
 
-  // Draw obstacles
   for (const o of obstacles) {
     ctx.drawImage(obstacleImg, o.x, o.y, o.w, o.h);
   }
